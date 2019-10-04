@@ -17,7 +17,7 @@ EvaluateAnswer <- function(answer,
   # creating a logger object
   logging::getLogger(name="EvaluateAnswerLogger")
 
-  # adding a handler that would log everything to Rassigny.log file
+  # adding a handler that would log everything to log file
   # the default level for this handler is "INFO (20)"
   logging::addHandler(logging::writeToFile, logger = "EvaluateAnswerLogger", file=log.config[["logfile_path"]])
 
