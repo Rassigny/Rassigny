@@ -1,74 +1,33 @@
 # Rassigny
 Rassigny is an Open Source project to develop R-packages that enables students to take statistical assignments using R.
+ 
+The key idea in this package is distributing assignments to students and improving their learning experience.
 
-This is an open source project developed and maintained by a team at Boston University. 
-The key idea in this package is distributing assignments to students and improving their learning experience. 
-Instructors can also use this package to correct student's answers.
+Instructors can use this package to automate the correction process.
 
 
 ## Getting Started
-The documentations here give instructions of use for Rassigny to you as students and instructors.
+The documentations here gives instructions of use for Rassigny to you as students and instructors.
 
 
 ## Installation
 
-First you need to install required packages. 
+First, make sure you have a working R installation.
 
-Run the following command on your R 
+[Downloaded the latest version of R](https://www.r-project.org/)
+
+
+You need to install required packages. 
+
+Run the following command on your R installation
 
 ```
 install.packages(c("RJSONIO", "jsonlite", "plyr", "pROC", "dplyr", "httr", "logging", "digest", "moments"))
 ```
 
-And the run the following code after you have compiled the package:
-
-#### For Mac
-```
-install.packages("Rassigny.tgz", repos = NULL, type = .Platform$pkgType )
-```
-
-#### For Windows
-```
-install.packages("Rassigny.zip", repos = NULL, type = .Platform$pkgType )
-```
-
-#### For Linux
-```
-install.packages("Rassigny.tar.gz", repos = NULL, type = .Platform$pkgType )
-```
-
-
-## Use case
-```
-# load library
-library(Rassigny)
-
-# First generate data for assignment that you are trying to take with GenerateData() function.
-# Put your email address(string) and assignmentID that you are trying to take(integer)
-
-data <- GenerateData("student@bu.edu", assignmentID = 1)
-
-# If you want to check what questions the assignment has, use GetListOfTasks() function.
-# taskID parameter is optional. If you specify taskID, you will get only one question for the task.
-# Otherwise, you will get list of questions corresponding to assignmentID
-task_1_1 <- GetListOfTasks(assignmentID = 1, taskID = 1)
-
-# Compute your answer.
-# This can be any numeric number that you calculated for answer.
-answer <- sd(data)
-
-# Check the evaluation result.
-# Pass variable of you answer(it can be any name) or value of number for answeer, correponding assignmentID and taskID.
-EvaluateAnswer(answer, assignmentID = 1, taskID = 1)
-
-
-# check student results
-```
-ListOfReviews(password = "PASSWORD", "student@bu.edu", assignmentID = 1)
-```
 
 ## Building the library
-If you are a instructor and have the source code for the Rassigny package and you want to build the library, follow these steps:
+If you are an instructor and want to build the library, follow these steps:
 
 1. Navigate to the directory Rassigny.
 
@@ -91,6 +50,8 @@ setwd(path/to/Rassigny/data-raw)
 ```
 
 2. Add new json file for assignment. When you have dependencies, specify environment of the library with functions.
+
+
 For example, dplyr::filter().
 
 
@@ -131,4 +92,52 @@ For example, dplyr::filter().
 4. Run add_files.sh on commandline. This will add json object and create binary package one upper level of directory, Rassigny 
 ```
 ../add_files.sh
+```
+
+5. Test the compiled package:
+
+#### For Mac
+```
+install.packages("Rassigny.tgz", repos = NULL, type = .Platform$pkgType )
+```
+
+#### For Windows
+```
+install.packages("Rassigny.zip", repos = NULL, type = .Platform$pkgType )
+```
+
+#### For Linux
+```
+install.packages("Rassigny.tar.gz", repos = NULL, type = .Platform$pkgType )
+```
+
+
+
+## Use case
+```
+# load library
+library(Rassigny)
+
+# First generate data for assignment that you are trying to take with GenerateData() function.
+# Put your email address(string) and assignmentID that you are trying to take(integer)
+
+data <- GenerateData("student@bu.edu", assignmentID = 1)
+
+# If you want to check what questions the assignment has, use GetListOfTasks() function.
+# taskID parameter is optional. If you specify taskID, you will get only one question for the task.
+# Otherwise, you will get list of questions corresponding to assignmentID
+task_1_1 <- GetListOfTasks(assignmentID = 1, taskID = 1)
+
+# Compute your answer.
+# This can be any numeric number that you calculated for answer.
+answer <- sd(data)
+
+# Check the evaluation result.
+# Pass variable of you answer(it can be any name) or value of number for answeer, correponding assignmentID and taskID.
+EvaluateAnswer(answer, assignmentID = 1, taskID = 1)
+
+
+# check student results
+```
+ListOfReviews(password = "PASSWORD", "student@bu.edu", assignmentID = 1)
 ```
