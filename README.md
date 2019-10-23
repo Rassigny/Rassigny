@@ -49,10 +49,11 @@ cd path/to/Rassigny/data-raw
 setwd(path/to/Rassigny/data-raw)
 ```
 
-2. Add new json file for assignment. When you have dependencies, specify environment of the library with functions.
+2. Add new json file for assignment. 
 
+   When you have dependencies, specify environment of the library with functions.
 
-For example, dplyr::filter().
+   For example, dplyr::filter().
 
 
 3. Use the following example JSON skeleton to design your assignments
@@ -89,13 +90,14 @@ For example, dplyr::filter().
 ```
 
 
-4. Run add_files.sh on commandline. This will add json object and create binary package one upper level of directory, Rassigny 
+4. Run add_files.sh on commandline. 
+
+This will add json object and create binary package one upper level of directory, Rassigny 
 ```
 ../add_files.sh
 ```
 
 5. Test the compiled package:
-
 #### For Mac
 ```
 install.packages("Rassigny.tgz", repos = NULL, type = .Platform$pkgType )
@@ -116,6 +118,7 @@ install.packages("Rassigny.tar.gz", repos = NULL, type = .Platform$pkgType )
 ## Use case
 ```
 # load library
+
 library(Rassigny)
 
 # First generate data for assignment that you are trying to take with GenerateData() function.
@@ -126,18 +129,20 @@ data <- GenerateData("student@bu.edu", assignmentID = 1)
 # If you want to check what questions the assignment has, use GetListOfTasks() function.
 # taskID parameter is optional. If you specify taskID, you will get only one question for the task.
 # Otherwise, you will get list of questions corresponding to assignmentID
+
 task_1_1 <- GetListOfTasks(assignmentID = 1, taskID = 1)
 
 # Compute your answer.
 # This can be any numeric number that you calculated for answer.
+
 answer <- sd(data)
 
 # Check the evaluation result.
 # Pass variable of you answer(it can be any name) or value of number for answeer, correponding assignmentID and taskID.
+
 EvaluateAnswer(answer, assignmentID = 1, taskID = 1)
 
-
 # check student results
-```
 ListOfReviews(password = "PASSWORD", "student@bu.edu", assignmentID = 1)
+
 ```
